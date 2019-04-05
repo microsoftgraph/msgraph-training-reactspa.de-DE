@@ -1,31 +1,25 @@
 <!-- markdownlint-disable MD002 MD041 -->
 
-In dieser Übung erstellen Sie eine neue Azure AD-Webanwendungs Registrierung mithilfe des Application Registry Portal (ARP).
+In dieser Übung erstellen Sie eine neue Azure AD-Webanwendungs Registrierung mithilfe des Azure Active Directory Admin Center.
 
-1. Öffnen Sie einen Browser, und navigieren Sie zum [Anwendungs Registrierungs Portal](https://apps.dev.microsoft.com). Melden Sie sich über ein **persönliches Konto** (aka: Microsoft-Konto) oder ein Geschäfts- **oder Schulkonto**an.
+1. Öffnen Sie einen Browser, und navigieren Sie zum [Azure Active Directory Admin Center](https://aad.portal.azure.com). Melden Sie sich über ein **persönliches Konto** (aka: Microsoft-Konto) oder ein Geschäfts- **oder Schulkonto**an.
 
-1. Wählen Sie oben auf der Seite **eine APP hinzufügen** aus.
+1. Wählen Sie **Azure Active Directory** in der linken Navigationsleiste aus, und wählen Sie dann **App-Registrierungen (Vorschau)** unter **Manage**aus.
 
-    > [!NOTE]
-    > Wenn auf der Seite mehr als eine Schaltfläche **app hinzufügen** angezeigt wird, wählen Sie diejenige aus, die der Liste **konvergierter apps** entspricht.
+    ![Screenshot der APP-Registrierungen ](./images/aad-portal-app-registrations.png)
 
-1. Legen Sie auf der Seite **Ihre Anwendung registrieren** den **Anwendungsnamen** auf **reagieren Graph-Lernprogramm** fest, und wählen Sie **Erstellen**aus.
+1. Wählen Sie **neue Registrierung**aus. Legen Sie auf der Seite **Anwendung registrieren** die Werte wie folgt fest.
 
-    ![Screenshot des Erstellens einer neuen app in der APP-Registrierungs Portal-Website](./images/arp-create-app-01.png)
+    - Legen **** Sie Name `React Graph Tutorial`auf fest.
+    - Legen Sie **unterstützte Kontotypen** auf **Konten in einem beliebigen Organisations Verzeichnis und persönlichen Microsoft-Konten**fest.
+    - Legen Sie unter umLeitungs- **URI**die erste Dropdown `Web` Liste auf fest, und `http://localhost:3000`legen Sie den Wert auf fest.
 
-1. Kopieren Sie auf der Seite mit der **Lernprogramm Registrierung des Reaktions Graphen** im Abschnitt **Eigenschaften** die **Anwendungs-ID** , so wie Sie Sie später benötigen.
+    ![Screenshot der Seite "Registrieren einer Anwendung"](./images/aad-register-an-app.png)
 
-    ![Screenshot der neu erstellten Anwendungs-ID](./images/arp-create-app-02.png)
+1. Wählen Sie **registrieren**aus. Kopieren Sie auf der Seite mit dem **eckigEn Graph-Lernprogramm** den Wert der **Anwendungs-ID (Client)** , und speichern Sie ihn, dann benötigen Sie ihn im nächsten Schritt.
 
-1. Scrollen Sie nach unten zum Abschnitt **Plattformen** .
+    ![Screenshot der Anwendungs-ID der neuen App-Registrierung](./images/aad-application-id.png)
 
-    1. Wählen Sie **Plattform hinzufügen**aus.
-    1. Wählen Sie im Dialogfeld **Plattform hinzufügen** die Option **Web**aus.
+1. Wählen Sie unter **Manage**die Option **Authentication** aus. Suchen Sie den **impliziten Grant** -Abschnitt, und aktivieren Sie **Zugriffstoken** und **ID-Token**. Wählen Sie **Speichern** aus.
 
-        ![Screenshot Erstellen einer Plattform für die APP](./images/arp-create-app-03.png)
-
-    1. Geben Sie **** im Feld Webplattform für `http://localhost:3000` die Umleitungs- **URLs**ein.
-
-        ![Screenshot der neu hinzugefügten Webplattform für die Anwendung](./images/arp-create-app-04.png)
-
-1. Scrollen Sie zum unteren Rand der Seite, und wählen Sie **Speichern**aus.
+    ![Screenshot des impliziten Grant-Abschnitts](./images/aad-implicit-grant.png)
