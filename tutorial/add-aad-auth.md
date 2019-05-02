@@ -225,7 +225,7 @@ Wenn Sie nun Ihre Änderungen speichern und die app starten, sollten Sie nach de
 
 Klicken Sie auf den Benutzer Avatar in der oberen rechten Ecke, **** um auf den Link abmelden zuzugreifen. Wenn **** Sie auf Abmelden klicken, wird die Sitzung zurückgesetzt, und Sie kehren zur Startseite.
 
-![Screenshot des Dropdownmenüs mit dem Link "abMelden"](./images/add-aad-auth-02.png)
+![Screenshot des Dropdownmenüs mit dem Link "Abmelden"](./images/add-aad-auth-02.png)
 
 ## <a name="storing-and-refreshing-tokens"></a>Speichern und Aktualisieren von Token
 
