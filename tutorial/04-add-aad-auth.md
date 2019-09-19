@@ -74,11 +74,24 @@ async login() {
     await this.getUserProfile();
   }
   catch(err) {
-    var errParts = err.split('|');
+    var error = {};
+
+    if (typeof(err) === 'string') {
+      var errParts = err.split('|');
+      error = errParts.length > 1 ?
+        { message: errParts[1], debug: errParts[0] } :
+        { message: err };
+    } else {
+      error = {
+        message: err.message,
+        debug: JSON.stringify(err)
+      };
+    }
+
     this.setState({
       isAuthenticated: false,
       user: {},
-      error: { message: errParts[1], debug: errParts[0] }
+      error: error
     });
   }
 }
@@ -239,7 +252,7 @@ Wenn Sie nun Ihre Änderungen speichern und die app starten, sollten Sie nach de
 
 ![Ein Screenshot der Startseite nach der Anmeldung](./images/add-aad-auth-01.png)
 
-Klicken Sie in der oberen rechten Ecke auf den Avatar des Benutzers **** , um auf den Abmeldelink zuzugreifen. Durch **** klicken auf Abmelden wird die Sitzung zurückgesetzt, und Sie kehren zur Startseite zurück.
+Klicken Sie in der oberen rechten Ecke auf den Avatar des Benutzers, um auf den **Abmelde** Link zuzugreifen. Durch Klicken auf **Abmelden** wird die Sitzung zurückgesetzt, und Sie kehren zur Startseite zurück.
 
 ![Screenshot des Dropdownmenüs mit dem Link zum Abmelden](./images/add-aad-auth-02.png)
 

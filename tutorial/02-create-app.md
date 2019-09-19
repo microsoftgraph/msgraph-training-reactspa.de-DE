@@ -3,7 +3,7 @@
 Öffnen Sie die Befehlszeilenschnittstelle (CLI), navigieren Sie zu einem Verzeichnis, in dem Sie Berechtigungen zum Erstellen von Dateien haben, und führen Sie die folgenden Befehle aus, um das [Create-reagiere-App-](https://www.npmjs.com/package/create-react-app) Tool zu installieren und eine neue Reaktions-APP zu erstellen.
 
 ```Shell
-npm install create-react-app@3.0.1 -g
+npm install create-react-app@3.1.1 -g
 create-react-app graph-tutorial
 ```
 
@@ -28,8 +28,8 @@ Bevor Sie fortfahren, installieren Sie einige zusätzliche Pakete, die Sie spät
 Führen Sie den folgenden Befehl in der CLI aus.
 
 ```Shell
-npm install react-router-dom@5.0.0 bootstrap@4.3.1 reactstrap@8.0.0 @fortawesome/fontawesome-free@5.8.2
-npm install moment@2.24.0 msal@1.0.0 @microsoft/microsoft-graph-client@1.6.0
+npm install react-router-dom@5.0.1 bootstrap@4.3.1 reactstrap@8.0.1 @fortawesome/fontawesome-free@5.10.2
+npm install moment@2.24.0 msal@1.1.3 @microsoft/microsoft-graph-client@1.7.0
 ```
 
 ## <a name="design-the-app"></a>Entwerfen der APP
