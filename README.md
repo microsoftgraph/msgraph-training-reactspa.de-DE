@@ -39,14 +39,15 @@ Dieses Modul wurde aufgezeichnet und steht im Office-Entwicklungs Kanal YouTube 
 
 | Version |       Datum       |              Kommentare              |
 | ------- | ---------------- | ---------------------------------- |
+| 1.7     | 3. Dezember 2019 | Update auf das neueste Graph-SDK und`create-react-app` |
 | 1.6     | 18. Juni 2019    | Link zu Screencast Recording hinzugefügt |
-| 1.5     | 24. Mai 2019     | 2019Q4-Inhaltsaktualisierung             |
+| 1,5     | 24. Mai 2019     | 2019Q4-Inhaltsaktualisierung             |
 | 1.4     | 22. Mai 2019     | Schnellstart Updates                 |
-| 1.3     | 16. Mai 2019     | Aktualisierte Schritte der Aad-App-Registrierung |
+| 1.3     | 16. Mai 2019     | Aktualisierte Schritte der Aad-App-Registrierung |
 | 1.2     | 6. März 2019    | 2019Q3-Inhaltsaktualisierung             |
 | 1.1     | 8. Februar 2019 | Folien hinzugefügt                       |
 | 1.0     | 2018             | Veröffentlicht                          |
 
 ## <a name="disclaimer"></a>Verzichtserklärung
 
-**Dieser Code wird ohne ** jegliche ausdrückliche oder implizite Gewährleistung bereitgestellt, einschließlich impliziter Garantien für die Eignung für einen bestimmten Zweck, die Marktgängigkeit oder die Nichtverletzung.**
+**Dieser Code wird ohne jegliche ausdrückliche oder implizite *Gewährleistung bereit* gestellt, einschließlich impliziter Garantien für die Eignung für einen bestimmten Zweck, die Marktgängigkeit oder die Nichtverletzung.**
