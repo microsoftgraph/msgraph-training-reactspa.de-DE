@@ -2,24 +2,24 @@
 
 In dieser Übung erweitern Sie die Anwendung aus der vorherigen Übung, um die Authentifizierung mit Azure AD zu unterstützen. Dies ist erforderlich, um das erforderliche OAuth-Zugriffstoken zum Aufrufen von Microsoft Graph zu erhalten. In diesem Schritt werden Sie die Bibliothek der [Microsoft-Authentifizierungsbibliothek](https://github.com/AzureAD/microsoft-authentication-library-for-js) in die Anwendung integrieren.
 
-1. Erstellen Sie eine neue Datei im `./src` Verzeichnis mit `Config.ts` dem Namen, und fügen Sie den folgenden Code hinzu.
+1. Erstellen Sie eine neue Datei im `./src` Verzeichnis mit dem Namen `Config.ts` , und fügen Sie den folgenden Code hinzu.
 
-    :::code language="typescript" source="../demo/graph-tutorial/src/Config.ts.example":::
+    :::code language="typescript" source="../demo/graph-tutorial/src/Config.example.ts":::
 
-    Ersetzen `YOUR_APP_ID_HERE` Sie durch die Anwendungs-ID aus dem Anwendungs Registrierungs Portal.
+    Ersetzen Sie `YOUR_APP_ID_HERE` durch die Anwendungs-ID aus dem Anwendungs Registrierungs Portal.
 
     > [!IMPORTANT]
-    > Wenn Sie die Quellcodeverwaltung wie git verwenden, wäre es jetzt ein guter Zeitpunkt, die Datei `Config.ts` aus der Quellcodeverwaltung auszuschließen, um unbeabsichtigtes Auslaufen ihrer APP-ID zu vermeiden.
+    > Wenn Sie die Quellcodeverwaltung wie git verwenden, wäre es jetzt ein guter Zeitpunkt, die `Config.ts` Datei aus der Quellcodeverwaltung auszuschließen, um unbeabsichtigtes Auslaufen ihrer APP-ID zu vermeiden.
 
 ## <a name="implement-sign-in"></a>Implementieren der Anmeldung
 
 In diesem Abschnitt erstellen Sie einen Authentifizierungsanbieter und implementieren die Anmeldung und Abmeldung.
 
-1. Erstellen Sie eine neue Datei im `./src` Verzeichnis mit `AuthProvider.tsx` dem Namen, und fügen Sie den folgenden Code hinzu.
+1. Erstellen Sie eine neue Datei im `./src` Verzeichnis mit dem Namen `AuthProvider.tsx` , und fügen Sie den folgenden Code hinzu.
 
     ```typescript
     import React from 'react';
-    import { UserAgentApplication } from 'msal';
+    import { PublicClientApplication } from '@azure/msal-browser';
 
     import { config } from './Config';
 
@@ -42,7 +42,7 @@ In diesem Abschnitt erstellen Sie einen Authentifizierungsanbieter und implement
     export default function withAuthProvider<T extends React.Component<AuthComponentProps>>
       (WrappedComponent: new(props: AuthComponentProps, context?: any) => T): React.ComponentClass {
       return class extends React.Component<any, AuthProviderState> {
-        private userAgentApplication: UserAgentApplication;
+        private publicClientApplication: PublicClientApplication;
 
         constructor(props: any) {
           super(props);
@@ -53,7 +53,7 @@ In diesem Abschnitt erstellen Sie einen Authentifizierungsanbieter und implement
           };
 
           // Initialize the MSAL application object
-          this.userAgentApplication = new UserAgentApplication({
+          this.publicClientApplication = new PublicClientApplication({
             auth: {
                 clientId: config.appId,
                 redirectUri: config.redirectUri
@@ -68,9 +68,9 @@ In diesem Abschnitt erstellen Sie einen Authentifizierungsanbieter und implement
         componentDidMount() {
           // If MSAL already has an account, the user
           // is already logged in
-          var account = this.userAgentApplication.getAccount();
+          const accounts = this.publicClientApplication.getAllAccounts();
 
-          if (account) {
+          if (accounts && accounts.length > 0) {
             // Enhance user object with data from Graph
             this.getUserProfile();
           }
@@ -91,11 +91,12 @@ In diesem Abschnitt erstellen Sie einen Authentifizierungsanbieter und implement
         async login() {
           try {
             // Login via popup
-            await this.userAgentApplication.loginPopup(
+            await this.publicClientApplication.loginPopup(
                 {
                   scopes: config.scopes,
                   prompt: "select_account"
               });
+
             // After login, get the user's profile
             await this.getUserProfile();
           }
@@ -109,27 +110,34 @@ In diesem Abschnitt erstellen Sie einen Authentifizierungsanbieter und implement
         }
 
         logout() {
-          this.userAgentApplication.logout();
+          this.publicClientApplication.logout();
         }
 
         async getAccessToken(scopes: string[]): Promise<string> {
           try {
+            const accounts = this.publicClientApplication
+              .getAllAccounts();
+
+            if (accounts.length <= 0) throw new Error('login_required');
             // Get the access token silently
             // If the cache contains a non-expired token, this function
             // will just return the cached token. Otherwise, it will
             // make a request to the Azure OAuth endpoint to get a token
-            var silentResult = await this.userAgentApplication.acquireTokenSilent({
-              scopes: scopes
-            });
+            var silentResult = await this.publicClientApplication
+                .acquireTokenSilent({
+                  scopes: scopes,
+                  account: accounts[0]
+                });
 
             return silentResult.accessToken;
           } catch (err) {
             // If a silent request fails, it may be because the user needs
             // to login or grant consent to one or more of the requested scopes
             if (this.isInteractionRequired(err)) {
-              var interactiveResult = await this.userAgentApplication.acquireTokenPopup({
-                scopes: scopes
-              });
+              var interactiveResult = await this.publicClientApplication
+                  .acquireTokenPopup({
+                    scopes: scopes
+                  });
 
               return interactiveResult.accessToken;
             } else {
@@ -189,14 +197,15 @@ In diesem Abschnitt erstellen Sie einen Authentifizierungsanbieter und implement
           return (
             error.message.indexOf('consent_required') > -1 ||
             error.message.indexOf('interaction_required') > -1 ||
-            error.message.indexOf('login_required') > -1
+            error.message.indexOf('login_required') > -1 ||
+            error.message.indexOf('no_account_in_silent_request') > -1
           );
         }
       }
     }
     ```
 
-1. Öffnen `./src/App.tsx` Sie und fügen Sie `import` die folgende Anweisung am Anfang der Datei hinzu.
+1. Öffnen `./src/App.tsx` Sie und fügen Sie die folgende `import` Anweisung am Anfang der Datei hinzu.
 
     ```typescript
     import withAuthProvider, { AuthComponentProps } from './AuthProvider';
@@ -214,19 +223,19 @@ In diesem Abschnitt erstellen Sie einen Authentifizierungsanbieter und implement
     export default withAuthProvider(App);
     ```
 
-1. Speichern Sie Ihre Änderungen, und aktualisieren Sie den Browser. Klicken Sie auf die Schaltfläche zum Anmelden, um zu `https://login.microsoftonline.com`weitergeleitet zu werden. Melden Sie sich mit Ihrem Microsoft-Konto an, und stimmen Sie den angeforderten Berechtigungen zu. Die APP-Seite sollte aktualisiert werden, wobei das Token angezeigt wird.
+1. Speichern Sie Ihre Änderungen, und aktualisieren Sie den Browser. Klicken Sie auf die Anmeldeschaltfläche, und es sollte ein Popupfenster angezeigt werden, das geladen wird `https://login.microsoftonline.com` . Melden Sie sich mit Ihrem Microsoft-Konto an, und stimmen Sie den angeforderten Berechtigungen zu. Die APP-Seite sollte aktualisiert werden, wobei das Token angezeigt wird.
 
 ### <a name="get-user-details"></a>Benutzerdetails abrufen
 
 In diesem Abschnitt erhalten Sie Informationen zu den Benutzern von Microsoft Graph.
 
-1. Erstellen Sie eine neue Datei im `./src` Verzeichnis mit `GraphService.ts` dem Namen, und fügen Sie den folgenden Code hinzu.
+1. Erstellen Sie eine neue Datei im `./src` Verzeichnis `GraphService.ts` mit dem Namen, und fügen Sie den folgenden Code hinzu.
 
     :::code language="typescript" source="../demo/graph-tutorial/src/GraphService.ts" id="graphServiceSnippet1":::
 
     Dadurch wird die `getUserDetails`-Funktion implementiert, die das Microsoft Graph-SDK verwendet, um den `/me`-Endpunkt aufzurufen und das Ergebnis zurückzugeben.
 
-1. Öffnen `./src/AuthProvider.tsx` Sie und fügen Sie `import` die folgende Anweisung am Anfang der Datei hinzu.
+1. Öffnen `./src/AuthProvider.tsx` Sie und fügen Sie die folgende `import` Anweisung am Anfang der Datei hinzu.
 
     ```typescript
     import { getUserDetails } from './GraphService';
@@ -234,7 +243,7 @@ In diesem Abschnitt erhalten Sie Informationen zu den Benutzern von Microsoft Gr
 
 1. Ersetzen Sie die vorhandene `getUserProfile`-Funktion durch den folgenden Code.
 
-    :::code language="typescript" source="../demo/graph-tutorial/src/AuthProvider.tsx" id="getUserProfileSnippet" highlight="6-15":::
+    :::code language="typescript" source="../demo/graph-tutorial/src/AuthProvider.tsx" id="getUserProfileSnippet" highlight="6-18":::
 
 1. Speichern Sie Ihre Änderungen, und starten Sie die APP, nachdem Sie die Anmeldung wieder auf der Startseite durchlaufen haben, aber die Benutzeroberfläche sollte geändert werden, um anzugeben, dass Sie angemeldet sind.
 
@@ -250,4 +259,4 @@ Zu diesem Zeitpunkt verfügt Ihre Anwendung über ein Zugriffstoken, das in der 
 
 Dieses Token ist jedoch nur kurzzeitig verfügbar. Das Token läuft eine Stunde nach seiner Ausgabe ab. An dieser Stelle kommt das Aktualisierungstoken ins Spiel. Anhand des Aktualisierungstoken ist die App in der Lage, ein neues Zugriffstoken anzufordern, ohne dass der Benutzer sich erneut anmelden muss.
 
-Da die APP die MSAL-Bibliothek verwendet, müssen Sie keine Token-Speicher-oder Aktualisierungslogik implementieren. Das `UserAgentApplication` Token wird in der Browsersitzung zwischengespeichert. Die `acquireTokenSilent` Methode überprüft zuerst das zwischengespeicherte Token, und wenn es nicht abgelaufen ist, wird es zurückgegeben. Wenn er abgelaufen ist, wird das zwischengespeicherte Aktualisierungstoken verwendet, um ein neues zu erhalten. Sie verwenden diese Methode mehr im folgenden Modul.
+Da die APP die MSAL-Bibliothek verwendet, müssen Sie keine Token-Speicher-oder Aktualisierungslogik implementieren. Das `PublicClientApplication` Token wird in der Browsersitzung zwischengespeichert. Die `acquireTokenSilent` Methode überprüft zuerst das zwischengespeicherte Token, und wenn es nicht abgelaufen ist, wird es zurückgegeben. Wenn er abgelaufen ist, wird das zwischengespeicherte Aktualisierungstoken verwendet, um ein neues zu erhalten. Sie verwenden diese Methode mehr im folgenden Modul.

@@ -4,7 +4,7 @@
 
 Um das abgeschlossene Projekt in diesem Ordner auszuführen, benötigen Sie Folgendes:
 
-- [Node. js](https://nodejs.org) auf dem Entwicklungscomputer installiert. Wenn Sie nicht über Node. js verfügen, besuchen Sie den vorherigen Link für Downloadoptionen. (**Hinweis:** dieses Lernprogramm wurde mit Node Version 12.16.1 geschrieben. Die Schritte in diesem Leitfaden funktionieren möglicherweise mit anderen Versionen, aber das wurde nicht getestet.)
+- [Node.js](https://nodejs.org) auf dem Entwicklungscomputer installiert. Wenn Sie nicht über Node.js verfügen, besuchen Sie den vorherigen Link für Downloadoptionen. (**Hinweis:** dieses Lernprogramm wurde mit Node Version 12.16.1 geschrieben. Die Schritte in diesem Leitfaden funktionieren möglicherweise mit anderen Versionen, aber das wurde nicht getestet.)
 - Entweder ein persönliches Microsoft-Konto mit einem Postfach auf Outlook.com oder ein Microsoft-Arbeits-oder Schulkonto.
 
 Wenn Sie kein Microsoft-Konto haben, gibt es mehrere Optionen, um ein kostenloses Konto zu erhalten:
@@ -20,13 +20,13 @@ Wenn Sie kein Microsoft-Konto haben, gibt es mehrere Optionen, um ein kostenlose
 
     ![Screenshot der APP-Registrierungen ](/tutorial/images/aad-portal-app-registrations.png)
 
-    > **Hinweis:** Azure AD B2C-Benutzern werden möglicherweise nur **App-Registrierungen (Legacy)** angezeigt. Wechseln Sie in diesem Fall direkt zu [https://aka.ms/appregistrations](https://aka.ms/appregistrations).
+    > **Hinweis:** Azure AD B2C-Benutzern werden möglicherweise nur **App-Registrierungen (Legacy)** angezeigt. Wechseln Sie in diesem Fall direkt zu [https://aka.ms/appregistrations](https://aka.ms/appregistrations) .
 
 1. Wählen Sie **Neue Registrierung** aus. Legen Sie auf der Seite **Anwendung registrieren** die Werte wie folgt fest.
 
     - Legen Sie **Name** auf `React Graph Tutorial` fest.
     - Legen Sie **Unterstützte Kontotypen** auf **Konten in allen Organisationsverzeichnissen und persönliche Microsoft-Konten** fest.
-    - Legen Sie unter **Umleitungs-URI** die erste Dropdownoption auf `Web` fest, und legen Sie den Wert auf `http://localhost:3000` fest.
+    - Legen Sie unter **Umleitungs-URI** die erste Dropdownoption auf `Single-page application (SPA)` fest, und legen Sie den Wert auf `http://localhost:3000` fest.
 
     ![Screenshot der Seite "Anwendung registrieren"](/tutorial/images/aad-register-an-app.png)
 
@@ -34,16 +34,12 @@ Wenn Sie kein Microsoft-Konto haben, gibt es mehrere Optionen, um ein kostenlose
 
     ![Screenshot der Anwendungs-ID der neuen App-Registrierung](/tutorial/images/aad-application-id.png)
 
-1. Wählen Sie unter **Verwalten** die Option **Authentifizierung** aus. Suchen Sie den **impliziten Grant** -Abschnitt, und aktivieren Sie **Zugriffstoken** und **ID-Token**. Wählen Sie **Speichern** aus.
-
-    ![Screenshot des Abschnitts "Implizite Gewährung"](/tutorial/images/aad-implicit-grant.png)
-
 ## <a name="configure-the-sample"></a>Konfigurieren des Beispiels
 
-1. Benennen Sie `./graph-tutorial/src/Config.ts.example` die Datei `./graph-tutorial/src/Config.ts`in.
-1. Bearbeiten Sie `./graph-tutorial/src/Config.ts` die Datei, und nehmen Sie die folgenden Änderungen vor.
+1. Benennen `./graph-tutorial/src/Config.example.ts` Sie die Datei in `./graph-tutorial/src/Config.ts` .
+1. Bearbeiten Sie die `./graph-tutorial/src/Config.ts` Datei, und nehmen Sie die folgenden Änderungen vor.
     1. Ersetzen `YOUR_APP_ID_HERE` Sie durch die **Anwendungs-ID** , die Sie im App-Registrierungs Portal erhalten haben.
-1. Navigieren Sie in der Befehlszeilenschnittstelle (CLI) zum `graph-tutorial` Verzeichnis, und führen Sie den folgenden Befehl aus, um Anforderungen zu installieren.
+1. Navigieren Sie in der Befehlszeilenschnittstelle (CLI) zum Verzeichnis, `graph-tutorial` und führen Sie den folgenden Befehl aus, um Anforderungen zu installieren.
 
     ```Shell
     npm install

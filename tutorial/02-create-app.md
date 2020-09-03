@@ -5,7 +5,7 @@ In diesem Abschnitt erstellen Sie eine neue Reaktions-app.
 1. Öffnen Sie die Befehlszeilenschnittstelle (CLI), navigieren Sie zu einem Verzeichnis, in dem Sie über Berechtigungen zum Erstellen von Dateien verfügen, und führen Sie die folgenden Befehle aus, um eine neue Reaktions-APP zu erstellen.
 
     ```Shell
-    npx create-react-app@3.4.0 graph-tutorial --template typescript
+    npx create-react-app@3.4.1 graph-tutorial --template typescript
     ```
 
 1. Nachdem der Befehl abgeschlossen ist, wechseln Sie `graph-tutorial` in das Verzeichnis in der CLI, und führen Sie den folgenden Befehl aus, um einen lokalen Webserver zu starten.
@@ -14,7 +14,7 @@ In diesem Abschnitt erstellen Sie eine neue Reaktions-app.
     npm start
     ```
 
-Ihr Standardbrowser wird [https://localhost:3000/](https://localhost:3000) mit einer Standard reaktionsseite geöffnet. Wenn Ihr Browser nicht geöffnet wird, öffnen Sie ihn, [https://localhost:3000/](https://localhost:3000) und navigieren Sie zu, um zu überprüfen, ob die neue APP funktioniert.
+Ihr Standardbrowser wird [https://localhost:3000/](https://localhost:3000) mit einer Standard reaktionsseite geöffnet. Wenn Ihr Browser nicht geöffnet wird, öffnen Sie ihn, und navigieren Sie zu, um [https://localhost:3000/](https://localhost:3000) zu überprüfen, ob die neue APP funktioniert.
 
 ## <a name="add-node-packages"></a>Hinzufügen von Knoten Paketen
 
@@ -25,29 +25,30 @@ Bevor Sie fortfahren, installieren Sie einige zusätzliche Pakete, die Sie spät
 - [reactstrap](https://github.com/reactstrap/reactstrap) für reaktionskomponenten basierend auf Bootstrap.
 - [fontawesome-kostenlos](https://github.com/FortAwesome/Font-Awesome) für Symbole.
 - [Zeitpunkt](https://github.com/moment/moment) für die Formatierung von Datums-und Uhrzeitangaben.
-- [msal](https://github.com/AzureAD/microsoft-authentication-library-for-js) zur Authentifizierung bei Azure Active Directory und zum Abrufen von Zugriffstoken.
+- [Windows-IANA](https://github.com/rubenillodo/windows-iana) für die Übersetzung von Windows-Zeitzonen in das IANA-Format.
+- [msal-Browser](https://github.com/AzureAD/microsoft-authentication-library-for-js/tree/dev/lib/msal-browser) zur Authentifizierung bei Azure Active Directory und zum Abrufen von Zugriffstoken.
 - [Microsoft-Graph-Client](https://github.com/microsoftgraph/msgraph-sdk-javascript) zum tätigen von Anrufen an Microsoft Graph.
 
 Führen Sie den folgenden Befehl in der CLI aus.
 
 ```Shell
-npm install react-router-dom@5.1.2 @types/react-router-dom@5.1.3 bootstrap@4.4.1 reactstrap@8.4.1 @types/reactstrap@8.4.2
-npm install @fortawesome/fontawesome-free@5.12.1 moment@2.24.0 msal@1.2.1 @microsoft/microsoft-graph-client@2.0.0 @types/microsoft-graph@1.12.0
+npm install react-router-dom@5.2.0 @types/react-router-dom@5.1.5 bootstrap@4.5.2 reactstrap@8.5.1 @types/reactstrap@8.5.1 @fortawesome/fontawesome-free@5.14.0
+npm install moment@2.27.0 moment-timezone@0.5.31 windows-iana@4.2.1 @azure/msal-browser@2.1.0 @microsoft/microsoft-graph-client@2.0.0 @types/microsoft-graph@1.18.0
 ```
 
 ## <a name="design-the-app"></a>Entwerfen der App
 
 Erstellen Sie zunächst ein navbar für die app.
 
-1. Erstellen Sie eine neue Datei im `./src` Verzeichnis mit `NavBar.tsx` dem Namen, und fügen Sie den folgenden Code hinzu.
+1. Erstellen Sie eine neue Datei im `./src` Verzeichnis mit dem Namen `NavBar.tsx` , und fügen Sie den folgenden Code hinzu.
 
     :::code language="typescript" source="../demo/graph-tutorial/src/NavBar.tsx" id="NavBarSnippet":::
 
-1. Erstellen Sie eine Startseite für die app. Erstellen Sie eine neue Datei im `./src` Verzeichnis mit `Welcome.tsx` dem Namen, und fügen Sie den folgenden Code hinzu.
+1. Erstellen Sie eine Startseite für die app. Erstellen Sie eine neue Datei im `./src` Verzeichnis mit dem Namen `Welcome.tsx` , und fügen Sie den folgenden Code hinzu.
 
     :::code language="typescript" source="../demo/graph-tutorial/src/Welcome.tsx" id="WelcomeSnippet":::
 
-1. Erstellen Sie eine Fehlermeldungen-Anzeige, um Nachrichten an den Benutzer anzuzeigen. Erstellen Sie eine neue Datei im `./src` Verzeichnis mit `ErrorMessage.tsx` dem Namen, und fügen Sie den folgenden Code hinzu.
+1. Erstellen Sie eine Fehlermeldungen-Anzeige, um Nachrichten an den Benutzer anzuzeigen. Erstellen Sie eine neue Datei im `./src` Verzeichnis mit dem Namen `ErrorMessage.tsx` , und fügen Sie den folgenden Code hinzu.
 
     :::code language="typescript" source="../demo/graph-tutorial/src/ErrorMessage.tsx" id="ErrorMessageSnippet":::
 
@@ -55,7 +56,7 @@ Erstellen Sie zunächst ein navbar für die app.
 
     :::code language="css" source="../demo/graph-tutorial/src/index.css":::
 
-1. Öffnen `./src/App.tsx` Sie den gesamten Inhalt, und ersetzen Sie ihn durch Folgendes.
+1. Öffnen Sie `./src/App.tsx` den gesamten Inhalt, und ersetzen Sie ihn durch Folgendes.
 
     ```typescript
     import React, { Component } from 'react';
