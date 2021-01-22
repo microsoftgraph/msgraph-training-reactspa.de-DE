@@ -1,29 +1,25 @@
-# <a name="microsoft-graph-training-module---build-react-single-page-apps-with-microsoft-graph"></a>Microsoft Graph-Schulungsmodul – erstellen reagieren von Einzelseiten-apps mit Microsoft Graph
+# <a name="microsoft-graph-training-module---build-react-single-page-apps-with-microsoft-graph"></a>Microsoft Graph-Schulungsmodul – Erstellen von einseitigen React-Apps mit Microsoft Graph
 
-In diesem Modul erfahren Sie, wie Sie mit dem Microsoft Graph arbeiten, indem Sie eine Reaktion auf eine einseitige Anwendung für den Zugriff auf Daten in Office 365 erstellen.
+Dieses Modul bietet eine Einführung in die Arbeit mit Microsoft Graph beim Erstellen einer einseitigen React-Anwendung für den Zugriff auf Daten in Office 365.
 
-## <a name="lab---react-single-page-apps-with-the-microsoft-graph"></a>Lab-reagieren von Einzelseiten-apps mit Microsoft Graph
+## <a name="lab---react-single-page-apps-with-the-microsoft-graph"></a>Übung – React single-page apps with the Microsoft Graph
 
-In dieser Übungseinheit erstellen Sie eine Reaktion mit einer einzelnen Seite, die mit Azure Active Directory (Azure AD) für die Authentifizierung & Autorisierung konfiguriert wird, die mithilfe von Microsoft Graph auf Daten in Office 365 zugreift.
+In dieser Übungseinheit erstellen Sie eine einseitige React-Anwendung, die mit Azure Active Directory (Azure AD) für die Authentifizierung &-Autorisierung konfiguriert ist und mit der mithilfe von Microsoft Graph auf Daten in Office 365 zugegriffen wird.
 
-- [Microsoft Graph-Lernprogramm reagieren](https://docs.microsoft.com/graph/training/react-tutorial)
+- [Lernprogramm zu React Microsoft Graph](https://docs.microsoft.com/graph/training/react-tutorial)
 
 ## <a name="completed-sample"></a>Abgeschlossenes Beispiel
 
-Wenn Sie das fertige Beispiel nur generieren möchten, indem Sie dieser Übungseinheit folgen, können Sie es hier finden.
+Wenn Sie nur möchten, dass das abgeschlossene Beispiel generiert wird, indem Sie dieses Lab folgen, finden Sie es hier.
 
-- [Fertig gestelltes Projekt](demo)
-
-## <a name="watch-the-module"></a>Modul ansehen
-
-Dieses Modul wurde aufgezeichnet und steht im Office-Entwicklungs Kanal YouTube zur Verfügung: [Build reagiere Spas mit Microsoft Graph](https://youtu.be/IghiKqly-HY)
+- [Abgeschlossenes Projekt](demo)
 
 ## <a name="contributors"></a>Mitwirkende
 
-|           Rollen           |                                           Autor (en)                                           |
+|           Rollen           |                                           Autor/n                                           |
 | ------------------------- | --------------------------------------------------------------------------------------------- |
-| Code/Tutorial/Support | Jason Johnston (Microsoft) [@jasonjoh](//github.com/jasonjoh)                                 |
-| Folien                    | Jeremy den (Microsoft) [@jthake-MSFT](//github.com/jthake-msft)                             |
+| Code/Lernprogramm/Support | Johnston (Microsoft) [@jasonjoh](//github.com/jasonjoh)                                 |
+| Folien                    | Thake (Microsoft) [@jthake-msft](//github.com/jthake-msft)                             |
 | QA                        | Andrew Connell (Microsoft MVP, Voitanos) [@andrewconnell](//github.com/andrewconnell)         |
 | QA                        | Julie Turner (Microsoft MVP, Sympraxis Consulting) [@juliemturner](//github.com/juliemturner) |
 
@@ -31,16 +27,16 @@ Dieses Modul wurde aufgezeichnet und steht im Office-Entwicklungs Kanal YouTube 
 
 | Version |       Datum       |              Kommentare              |
 | ------- | ---------------- | ---------------------------------- |
-| 1,8     | 19. März 2020   | Lernprogramm aktualisieren                   |
-| 1.7     | 3. Dezember 2019 | Update auf das neueste Graph-SDK und`create-react-app` |
-| 1.6     | 18. Juni 2019    | Link zu Screencast Recording hinzugefügt |
-| 1,5     | 24. Mai 2019     | 2019Q4-Inhaltsaktualisierung             |
-| 1.4     | 22. Mai 2019     | Schnellstart Updates                 |
-| 1.3     | 16. Mai 2019     | Aktualisierte Schritte der Aad-App-Registrierung |
-| 1.2     | 6. März 2019    | 2019Q3-Inhaltsaktualisierung             |
+| 1,8     | 19. März 2020   | Lernprogramm zum Aktualisieren                   |
+| 1.7     | 3. Dezember 2019 | Aktualisieren auf das neueste Graph SDK und `create-react-app` |
+| 1.6     | 18. Juni 2019    | Link zur Screencastaufzeichnung hinzugefügt |
+| 1,5     | 24. Mai 2019     | Inhaltsaktualisierung 2019Q4             |
+| 1.4     | 22. Mai 2019     | Schnellstartupdates                 |
+| 1.3     | 16. Mai 2019     | Schritte für die Registrierung einer AAD-App aktualisiert |
+| 1.2     | 6. März 2019    | Inhaltsaktualisierung 2019Q3             |
 | 1.1     | 8. Februar 2019 | Folien hinzugefügt                       |
 | 1.0     | 2018             | Veröffentlicht                          |
 
-## <a name="disclaimer"></a>Verzichtserklärung
+## <a name="disclaimer"></a>Haftungsausschluss
 
-**Dieser Code wird ohne jegliche ausdrückliche oder implizite *Gewährleistung bereit* gestellt, einschließlich impliziter Garantien für die Eignung für einen bestimmten Zweck, die Marktgängigkeit oder die Nichtverletzung.**
+**DIESER CODE  WIRD OHNE JEGLICHE GARANTIE BEREITGESTELLT, SEI ES AUSDRÜCKLICH ODER IMPLIZIT, EINSCHLIEßLICH ALLER IMPLIZIERTEN GEWÄHRLEISTUNGEN DER EIGNUNG FÜR EINEN BESTIMMTEN ZWECK, DER HANDELSBARKEIT ODER DER NICHTVERLETZUNG.**
