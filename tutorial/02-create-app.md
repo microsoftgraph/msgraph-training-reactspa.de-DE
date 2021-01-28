@@ -1,54 +1,57 @@
 <!-- markdownlint-disable MD002 MD041 -->
 
-In diesem Abschnitt erstellen Sie eine neue Reaktions-app.
+In diesem Abschnitt erstellen Sie eine neue React-App.
 
-1. Öffnen Sie die Befehlszeilenschnittstelle (CLI), navigieren Sie zu einem Verzeichnis, in dem Sie über Berechtigungen zum Erstellen von Dateien verfügen, und führen Sie die folgenden Befehle aus, um eine neue Reaktions-APP zu erstellen.
-
-    ```Shell
-    npx create-react-app@3.4.1 graph-tutorial --template typescript
-    ```
-
-1. Nachdem der Befehl abgeschlossen ist, wechseln Sie `graph-tutorial` in das Verzeichnis in der CLI, und führen Sie den folgenden Befehl aus, um einen lokalen Webserver zu starten.
+1. Öffnen Sie Die Befehlszeilenschnittstelle (CLI), navigieren Sie zu einem Verzeichnis, in dem Sie über die Rechte zum Erstellen von Dateien verfügen, und führen Sie die folgenden Befehle aus, um eine neue React-App zu erstellen.
 
     ```Shell
-    npm start
+    npx create-react-app@4.0.1 graph-tutorial --template typescript
     ```
 
-Ihr Standardbrowser wird [https://localhost:3000/](https://localhost:3000) mit einer Standard reaktionsseite geöffnet. Wenn Ihr Browser nicht geöffnet wird, öffnen Sie ihn, und navigieren Sie zu, um [https://localhost:3000/](https://localhost:3000) zu überprüfen, ob die neue APP funktioniert.
+1. Wechseln Sie nach Abschluss des Befehls in das Verzeichnis in der CLI, und führen Sie den folgenden Befehl aus, um einen `graph-tutorial` lokalen Webserver zu starten.
 
-## <a name="add-node-packages"></a>Hinzufügen von Knoten Paketen
+    ```Shell
+    yarn start
+    ```
 
-Bevor Sie fortfahren, installieren Sie einige zusätzliche Pakete, die Sie später verwenden werden:
+    > [!NOTE]
+    > Wenn Sie ["Vorzung" nicht](https://yarnpkg.com/) installiert haben, können Sie stattdessen `npm start` verwenden.
 
-- [reagiere-Router-Dom](https://github.com/ReactTraining/react-router) für das deklarative Routing innerhalb der Reaktions-app.
-- [Bootstrap](https://github.com/twbs/bootstrap) für Styling und allgemeine Komponenten.
-- [reactstrap](https://github.com/reactstrap/reactstrap) für reaktionskomponenten basierend auf Bootstrap.
-- [fontawesome-kostenlos](https://github.com/FortAwesome/Font-Awesome) für Symbole.
-- [Zeitpunkt](https://github.com/moment/moment) für die Formatierung von Datums-und Uhrzeitangaben.
-- [Windows-IANA](https://github.com/rubenillodo/windows-iana) für die Übersetzung von Windows-Zeitzonen in das IANA-Format.
-- [msal-Browser](https://github.com/AzureAD/microsoft-authentication-library-for-js/tree/dev/lib/msal-browser) zur Authentifizierung bei Azure Active Directory und zum Abrufen von Zugriffstoken.
-- [Microsoft-Graph-Client](https://github.com/microsoftgraph/msgraph-sdk-javascript) zum tätigen von Anrufen an Microsoft Graph.
+Ihr Standardbrowser wird mit [https://localhost:3000/](https://localhost:3000) einer standardmäßigen React-Seite geöffnet. Wenn Ihr Browser nicht geöffnet wird, öffnen Sie ihn, und überprüfen Sie, ob [https://localhost:3000/](https://localhost:3000) die neue App funktioniert.
 
-Führen Sie den folgenden Befehl in der CLI aus.
+## <a name="add-node-packages"></a>Hinzufügen von Knotenpaketen
+
+Installieren Sie vor dem Wechsel einige zusätzliche Pakete, die Sie später verwenden werden:
+
+- [react-router-dom](https://github.com/ReactTraining/react-router) für deklaratives Routing innerhalb der React-App.
+- [Bootstrap für](https://github.com/twbs/bootstrap) Formatierung und allgemeine Komponenten.
+- [reactstrap](https://github.com/reactstrap/reactstrap) für React-Komponenten, die auf Bootstrap basieren.
+- [fontawesome-free](https://github.com/FortAwesome/Font-Awesome) für Symbole.
+- [Moment](https://github.com/moment/moment) für die Formatierung von Datums- und Zeitangaben.
+- [windows-iana](https://github.com/rubenillodo/windows-iana) für die Übersetzung von Windows-Zeitzonen in das IANA-Format.
+- [msal-browser](https://github.com/AzureAD/microsoft-authentication-library-for-js/tree/dev/lib/msal-browser) für die Authentifizierung bei Azure Active Directory und das Abrufen von Zugriffstoken.
+- [microsoft-graph-client](https://github.com/microsoftgraph/msgraph-sdk-javascript) for making calls to Microsoft Graph.
+
+Führen Sie den folgenden Befehl in Der CLI aus.
 
 ```Shell
-npm install react-router-dom@5.2.0 @types/react-router-dom@5.1.5 bootstrap@4.5.2 reactstrap@8.5.1 @types/reactstrap@8.5.1 @fortawesome/fontawesome-free@5.14.0
-npm install moment@2.27.0 moment-timezone@0.5.31 windows-iana@4.2.1 @azure/msal-browser@2.1.0 @microsoft/microsoft-graph-client@2.0.0 @types/microsoft-graph@1.18.0
+yarn add react-router-dom@5.2.0 @types/react-router-dom@5.1.7 bootstrap@4.6.0 reactstrap@8.9.0 @types/reactstrap@8.7.2 @fortawesome/fontawesome-free@5.15.2
+yarn add moment@2.29.1 moment-timezone@0.5.32 windows-iana@4.2.1 @azure/msal-browser@2.10.0 @microsoft/microsoft-graph-client@2.2.1 @types/microsoft-graph@1.28.0
 ```
 
 ## <a name="design-the-app"></a>Entwerfen der App
 
-Erstellen Sie zunächst ein navbar für die app.
+Erstellen Sie zunächst eine Navigationsleiste für die App.
 
-1. Erstellen Sie eine neue Datei im `./src` Verzeichnis mit dem Namen `NavBar.tsx` , und fügen Sie den folgenden Code hinzu.
+1. Erstellen Sie eine neue Datei im `./src` Verzeichnis mit dem `NavBar.tsx` Namen, und fügen Sie den folgenden Code hinzu.
 
     :::code language="typescript" source="../demo/graph-tutorial/src/NavBar.tsx" id="NavBarSnippet":::
 
-1. Erstellen Sie eine Startseite für die app. Erstellen Sie eine neue Datei im `./src` Verzeichnis mit dem Namen `Welcome.tsx` , und fügen Sie den folgenden Code hinzu.
+1. Erstellen Sie eine Startseite für die App. Erstellen Sie eine neue Datei im `./src` Verzeichnis mit dem `Welcome.tsx` Namen, und fügen Sie den folgenden Code hinzu.
 
     :::code language="typescript" source="../demo/graph-tutorial/src/Welcome.tsx" id="WelcomeSnippet":::
 
-1. Erstellen Sie eine Fehlermeldungen-Anzeige, um Nachrichten an den Benutzer anzuzeigen. Erstellen Sie eine neue Datei im `./src` Verzeichnis mit dem Namen `ErrorMessage.tsx` , und fügen Sie den folgenden Code hinzu.
+1. Erstellen Sie eine Fehlermeldungsanzeige, um dem Benutzer Meldungen anzeigen zu können. Erstellen Sie eine neue Datei im `./src` Verzeichnis mit dem `ErrorMessage.tsx` Namen, und fügen Sie den folgenden Code hinzu.
 
     :::code language="typescript" source="../demo/graph-tutorial/src/ErrorMessage.tsx" id="ErrorMessageSnippet":::
 
@@ -56,7 +59,7 @@ Erstellen Sie zunächst ein navbar für die app.
 
     :::code language="css" source="../demo/graph-tutorial/src/index.css":::
 
-1. Öffnen Sie `./src/App.tsx` den gesamten Inhalt, und ersetzen Sie ihn durch Folgendes.
+1. Öffnen `./src/App.tsx` Sie den gesamten Inhalt, und ersetzen Sie ihn durch Folgendes.
 
     ```typescript
     import React, { Component } from 'react';
@@ -82,7 +85,7 @@ Erstellen Sie zunächst ein navbar für die app.
               <NavBar
                 isAuthenticated={this.props.isAuthenticated}
                 authButtonMethod={this.props.isAuthenticated ? this.props.logout : this.props.login}
-                user={this.props.user}/>
+                user={this.props.user} />
               <Container>
                 {error}
                 <Route exact path="/"
@@ -102,6 +105,6 @@ Erstellen Sie zunächst ein navbar für die app.
     export default App;
     ```
 
-1. Speichern Sie alle Änderungen, und aktualisieren Sie die Seite. Nun sollte die APP sehr unterschiedlich aussehen.
+1. Speichern Sie alle Änderungen, und starten Sie die App neu. Jetzt sollte die App ganz anders aussehen.
 
     ![Screenshot der neu gestalteten Homepage](images/create-app-01.png)
